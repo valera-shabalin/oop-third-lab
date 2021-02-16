@@ -13,6 +13,20 @@ Vector::Vector(size_t size, double* vector) : Base(size, vector)
 	}
 }
 
+/* Конструктор, принимающий лямба-выражение */
+Vector::Vector(size_t size, double(*func)(size_t, size_t)) : Base(size)
+{
+	for (size_t i = 0; i < size; i++)
+	{
+		*(this->data + i) = func(i, size);
+	}
+
+	if (debug)
+	{
+		cout << "Constructor 'Vector' with ID: " << this->id << endl;
+	}
+}
+
 /* Деструктор */
 Vector::~Vector()
 {

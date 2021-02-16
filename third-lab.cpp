@@ -5,6 +5,14 @@
 
 using namespace std;
 
+int rand_int(int min, int max) {
+    return min + rand() % (max - min);
+}
+
+double rand_double(double min, double max) {
+    return min + (double)rand() / RAND_MAX * (max - min);
+}
+
 void seporator()
 {
     cout << "==================================" << endl;
@@ -15,25 +23,23 @@ int main()
     setlocale(LC_CTYPE, "Rus");
 
     /* Создание массивов */
-    double* arr1 = create_array(2, 2);
-    double* arr2 = create_array(1, 4);
-    double* arr3 = create_array(2, 2);
-    double* arr4 = create_array(1, 4);
-    double* arr5 = create_array(4, 1);
+    auto func1 = [](size_t x, size_t y)->double { return rand_int(0, 10); };
+    auto func2 = [](size_t x, size_t y)->double { return rand_int(0, 20); };
 
-    /* Инициализация объектов */
-    Vector vec1(4, arr2), vec2(4, arr4);
+    Matrix m1(2, 2, func1);
     seporator();
-    Matrix mat1(2, 2, arr1), mat2(2, 2, arr2), mat3(2), mat4(1, 4, arr4), mat5(4, 1, arr5);
+    Matrix m2(2, 2, func2);
     seporator();
-
-    /* Проверка сложения */
-    Vector vec_summ = vec1 + mat4;
-    cout << "Сумма вектора и матрицы: " << vec_summ;
+    Vector v1(4, func1);
     seporator();
-    Matrix mat_summ = mat4 + vec2;
-    cout << "Сумма матрицы и вектора: " << mat_summ;
+    Vector v2(4, func2);
     seporator();
 
-    /* Проверка умножения */
+    cout << "Первая матрица: " << endl << m1;
+    cout << "Вторая матрица: " << endl << m2;
+
+    Matrix mull(m1 * m2);
+    cout << mull;
+
+    return 0;
 }

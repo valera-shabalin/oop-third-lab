@@ -6,8 +6,9 @@
 class Vector : public Base
 {
 public:
-	/* Конструктор и деструктор */
+	/* Конструкторы и деструктор */
 	Vector(size_t size = 0, double* vector = nullptr);
+	Vector(size_t size, double(*func)(size_t, size_t));
 
 	virtual ~Vector();
 

@@ -52,7 +52,4 @@ public:
 	double* GetData() const;
 };
 
-/* Вспомогательные функции */
-double* create_array(size_t x, size_t y = 1);
-
 #endif BASE_H

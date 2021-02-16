@@ -220,18 +220,3 @@ double* Base::GetData() const
 {
 	return this->data;
 }
-
-/* Вспомогательные функции */
-double* create_array(size_t x, size_t y)
-{
-	double* arr = new double[x * y];
-
-	cout << "Заполните массив " << x * y << " элементами: ";
-
-	for (size_t i = 0; i < x * y; i++)
-	{
-		cin >> arr[i];
-	}
-
-	return arr;
-}

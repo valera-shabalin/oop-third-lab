@@ -42,6 +42,26 @@ Matrix::Matrix(size_t n, size_t m, double* matrix) : Base(n * m, matrix)
 /* Конструктор с одним параметром */
 Matrix::Matrix(size_t n) : Matrix(n, n) {}
 
+/* Конструктор, принимающий лямба-выражение */
+Matrix::Matrix(size_t n, size_t m, double(*func)(size_t, size_t)) : Base(n * m)
+{
+	this->n = n;
+	this->m = m;
+
+	for (size_t i = 0; i < n; i++)
+	{
+		for (size_t j = 0; j < m; j++)
+		{
+			*(this->data + i * m + j) = func(i, j);
+		}
+	}
+
+	if (debug)
+	{
+		cout << "Constructor 'Matrix' with ID: " << this->id << endl;
+	}
+}
+
 /* Деструктор */
 Matrix::~Matrix()
 {
